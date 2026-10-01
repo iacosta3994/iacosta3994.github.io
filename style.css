@@ -386,6 +386,89 @@ h3 {
   font-style: normal;
 }
 
+.snippet-music {
+  grid-column: 1 / -1;
+}
+
+.music-row {
+  display: grid;
+  grid-template-columns: 14rem 1fr 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  height: 14rem;
+  margin-top: 1rem;
+}
+
+.player,
+.music-shot {
+  display: block;
+  overflow: hidden;
+  background: #07060a;
+  line-height: 0;
+}
+
+.music-shot {
+  border-radius: 0.9rem;
+}
+
+.player {
+  width: 14rem;
+  height: 14rem;
+  border-radius: 50%;
+}
+
+.player img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: spin 3.6s linear infinite;
+}
+
+.player:hover img,
+.player:focus-visible img {
+  animation-duration: 1.5s;
+}
+
+.music-shot {
+  height: 100%;
+}
+
+.music-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.music-shot:hover img,
+.music-shot:focus-visible img {
+  transform: scale(1.04);
+}
+
+.on-air {
+  min-height: 1.4em;
+  margin: 0.85rem 0 0;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.15rem;
+}
+
+.on-air span {
+  color: var(--faint);
+  font-family: var(--sans);
+  font-size: 0.92rem;
+}
+
+.music-link {
+  margin: 0.35rem 0 0;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .timeline {
   margin: 0;
   padding: 0;
@@ -647,6 +730,26 @@ section[id] {
   scroll-margin-top: 5.2rem;
 }
 
+@media (max-width: 719px) {
+  .music-row {
+    grid-template-columns: 1fr 1fr;
+    height: auto;
+  }
+
+  .player {
+    grid-column: 1 / -1;
+    width: min(16rem, 70%);
+    height: auto;
+    aspect-ratio: 1;
+    justify-self: center;
+  }
+
+  .music-shot {
+    height: auto;
+    aspect-ratio: 1;
+  }
+}
+
 @media (min-width: 720px) {
   .cards,
   .skill-grid,
@@ -675,6 +778,12 @@ section[id] {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .player img,
+  .music-shot img {
+    animation: none;
+    transition: none;
   }
 }
 

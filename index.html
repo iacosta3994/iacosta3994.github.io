@@ -108,8 +108,8 @@
       <section class="now wrap" aria-label="Currently">
         <p>
           <span>Now</span>
-          Indiana. Playing games, reading Wings of Fire, hiking when I feel
-          like it. Come say hi if you see the suit.
+          Indiana. Playing games, music on, hiking when I feel like it.
+          Come say hi if you see the suit.
         </p>
       </section>
 
@@ -163,20 +163,40 @@
               Fire animations. Movie essays too.
             </p>
             <p>
-              Music's usually on in the background. I also like dumb internet
-              comedy, people building stuff, and long podcasts while I'm doing
-              something else.
+              I also like dumb internet comedy, people building stuff, and long
+              podcasts while I'm doing something else.
             </p>
           </article>
-          <article class="snippet">
-            <h3>Reading</h3>
+          <article class="snippet snippet-music">
+            <h3>Music</h3>
             <p>
-              Right now I'm reading Wings of Fire. I got books 1 through 15.
+              I keep a liked-songs station on YouTube Music. Indie stuff, and
+              some older songs I don't skip. It's usually on while I'm doing
+              something else.
             </p>
-            <p>
-              Alan Watts sometimes. Neal Stephenson, <em>Cryptonomicon</em> and
-              <em>The Diamond Age</em>. Vernor Vinge, <em>A Fire Upon the Deep</em>
-              and <em>Rainbows End</em>.
+            <div class="music-row">
+              <a
+                class="player"
+                href="https://music.youtube.com/playlist?list=PLXpUtN9n_UF8"
+              >
+                <img src="media/record.jpg" alt="Vinyl record" width="1000" height="1000" />
+              </a>
+              <a
+                class="music-shot"
+                href="https://music.youtube.com/playlist?list=PLXpUtN9n_UF8"
+              >
+                <img src="media/turntable.jpg" alt="Record player" width="1000" height="1000" />
+              </a>
+              <a
+                class="music-shot"
+                href="https://music.youtube.com/playlist?list=PLXpUtN9n_UF8"
+              >
+                <img src="media/sleeves.jpg" alt="Records on a table" width="1000" height="1000" />
+              </a>
+            </div>
+            <p class="on-air" id="on-air"></p>
+            <p class="music-link">
+              <a href="https://music.youtube.com/playlist?list=PLXpUtN9n_UF8">Liked songs on YouTube Music</a>
             </p>
           </article>
         </div>
@@ -287,6 +307,41 @@
           if (note) note.hidden = false;
         })
         .catch(function () {});
+
+      var tracks = [
+        ["Cigarette Daydreams", "Cage the Elephant"],
+        ["Washing Machine Heart", "Mitski"],
+        ["Too Sweet", "Hozier"],
+        ["Peace Frog", "The Doors"],
+        ["Paranoid", "Black Sabbath"],
+        ["Sweet Dreams", "Eurythmics"],
+        ["By Being With You", "Cosmo Sheldrake"],
+        ["Station Wagon", "Mother Mother"],
+        ["Maps", "Yeah Yeah Yeahs"],
+        ["Night Eyes", "The Orion Experience"],
+        ["Atlas", "Good Kid"],
+        ["Why Can't We Be Friends?", "The Academic"]
+      ];
+      var onAir = document.getElementById("on-air");
+      var trackIndex = 0;
+
+      function showTrack() {
+        if (!onAir) return;
+        var track = tracks[trackIndex % tracks.length];
+        onAir.replaceChildren();
+        onAir.append(document.createTextNode(track[0] + " "));
+        var who = document.createElement("span");
+        who.textContent = track[1];
+        onAir.append(who);
+      }
+
+      showTrack();
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        setInterval(function () {
+          trackIndex += 1;
+          showTrack();
+        }, 4200);
+      }
     </script>
     <footer class="foot">
       <div class="wrap foot-inner">
