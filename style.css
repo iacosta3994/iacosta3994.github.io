@@ -386,8 +386,44 @@ h3 {
   font-style: normal;
 }
 
-.snippet-music {
+.snippet-music,
+.snippet-videos {
   grid-column: 1 / -1;
+}
+
+.games-top {
+  display: grid;
+  grid-template-columns: 1fr 6.5rem;
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.game-show {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+  background: #07060a;
+}
+
+.game-show a {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  line-height: 0;
+  transition: opacity 0.55s ease;
+}
+
+.game-show a.is-on {
+  opacity: 1;
+  z-index: 1;
+}
+
+.game-show img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .music-link {
@@ -712,6 +748,10 @@ section[id] {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .game-show a {
+    transition: none;
   }
 }
 
