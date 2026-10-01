@@ -23,14 +23,45 @@
 
 html {
   scroll-behavior: smooth;
+  background: #0c0a10;
+}
+
+html::before,
+html::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  top: -18vh;
+  width: 78vw;
+  height: 140vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(42px) saturate(1.35);
+  pointer-events: none;
+}
+
+html::before {
+  left: -16vw;
+  background-image: url("media/suit.jpg");
+  background-position: center 18%;
+  opacity: 0.7;
+}
+
+html::after {
+  right: -16vw;
+  background-image: url("media/techfur.jpg");
+  background-position: center center;
+  opacity: 0.62;
 }
 
 body {
   margin: 0;
-  background:
-    radial-gradient(820px 520px at 100% -8%, rgba(62, 210, 214, 0.22), transparent 58%),
-    radial-gradient(760px 480px at -12% 18%, rgba(150, 90, 210, 0.34), transparent 60%),
-    var(--bg);
+  background: linear-gradient(
+    180deg,
+    rgba(12, 10, 16, 0.5) 0%,
+    rgba(12, 10, 16, 0.74) 28%,
+    rgba(12, 10, 16, 0.86) 100%
+  );
   color: var(--ink);
   font-family: var(--sans);
   font-size: 1.05rem;
@@ -537,17 +568,19 @@ h3 {
 
 .strengths {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
   gap: 0.6rem;
 }
 
 .strengths li {
+  min-width: 0;
   padding: 0.8rem 0.9rem;
   border: 1px solid var(--line);
   border-radius: 0.85rem;
   background: rgba(27, 24, 34, 0.7);
   font-family: var(--serif);
   font-size: 1.15rem;
+  overflow-wrap: break-word;
 }
 
 .strengths span {
@@ -631,6 +664,11 @@ section[id] {
 }
 
 @media print {
+  html::before,
+  html::after {
+    display: none;
+  }
+
   body {
     background: #fff;
     color: #16141a;
