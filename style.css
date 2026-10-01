@@ -124,19 +124,20 @@ a:hover {
 }
 
 .hero {
-  display: grid;
-  gap: 2rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 3.5rem 0 2.5rem;
+  padding: 2.75rem 0 1.5rem;
+  text-align: center;
 }
 
 .portrait {
-  width: 11.5rem;
-  height: 11.5rem;
+  width: 7.25rem;
+  height: 7.25rem;
   object-fit: cover;
-  border-radius: 1.6rem;
+  border-radius: 50%;
   border: 1px solid var(--line);
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
 .eyebrow {
@@ -157,9 +158,9 @@ h3 {
 }
 
 h1 {
-  margin: 0.35rem 0 0.8rem;
-  font-size: clamp(3.1rem, 8vw, 5.6rem);
-  line-height: 0.92;
+  margin: 0.35rem 0 0.7rem;
+  font-size: clamp(2.5rem, 7vw, 3.8rem);
+  line-height: 0.95;
 }
 
 h2 {
@@ -175,46 +176,46 @@ h3 {
 }
 
 .lede {
-  max-width: 38rem;
+  max-width: 28rem;
   margin: 0;
   color: var(--muted);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
 }
 
-.actions {
+.linkstack {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-top: 1.5rem;
+  flex-direction: column;
+  gap: 0.7rem;
+  width: min(26rem, 100%);
+  margin-top: 1.6rem;
 }
 
-.btn {
-  display: inline-flex;
+.linkstack a {
+  position: relative;
+  display: flex;
   align-items: center;
-  padding: 0.55rem 1.05rem;
+  justify-content: center;
+  min-height: 3.2rem;
+  padding: 0.7rem 2.8rem;
   border: 1px solid var(--line);
   border-radius: 999px;
+  background: rgba(244, 239, 232, 0.05);
   color: var(--ink);
-  background: transparent;
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 560;
   text-decoration: none;
 }
 
-.btn:hover {
-  border-color: var(--accent);
-  color: var(--ink);
+.linkstack a svg {
+  position: absolute;
+  left: 1.15rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
-.btn-solid {
+.linkstack a:hover {
   border-color: transparent;
   background: var(--accent);
-  color: var(--accent-ink);
-  font-weight: 600;
-}
-
-.btn-solid:hover {
-  background: #e4d0ff;
   color: var(--accent-ink);
 }
 
@@ -223,9 +224,11 @@ h3 {
 }
 
 .now p {
-  margin: 0;
+  margin: 0 auto;
+  max-width: 40rem;
   padding: 1.25rem 0 0.25rem;
   border-top: 1px solid var(--line);
+  text-align: center;
   color: var(--muted);
   font-family: var(--serif);
   font-size: clamp(1.25rem, 2.4vw, 1.6rem);
@@ -504,12 +507,6 @@ section[id] {
 }
 
 @media (min-width: 720px) {
-  .hero {
-    grid-template-columns: auto 1fr;
-    gap: 3rem;
-    padding-top: 4.5rem;
-  }
-
   .cards,
   .skill-grid {
     grid-template-columns: 1fr 1fr;
@@ -547,7 +544,7 @@ section[id] {
 
   .top,
   .skip,
-  .actions,
+  .linkstack,
   .foot {
     display: none;
   }
