@@ -131,54 +131,17 @@
             </p>
           </article>
           <article class="snippet snippet-games">
-            <div class="games-top">
-              <div>
-                <h3>Games</h3>
-                <p>
-                  I like games with a story, weird mechanics, or a system I can mess
-                  with for a long time. Satisfactory and Stardew are the big ones
-                  right now. Halo's an old favorite. Wanderstop when I want something
-                  slow.
-                </p>
-              </div>
-              <div class="game-show" id="game-show">
-                <a class="is-on" href="https://store.steampowered.com/app/294100">
-                  <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/294100/library_600x900.jpg" alt="RimWorld" width="300" height="450" />
-                </a>
-                <a href="https://store.steampowered.com/app/403640">
-                  <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/403640/library_600x900.jpg" alt="Dishonored 2" width="300" height="450" />
-                </a>
-                <a href="https://store.steampowered.com/app/255710">
-                  <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/255710/library_600x900.jpg" alt="Cities: Skylines" width="300" height="450" />
-                </a>
-                <a href="https://store.steampowered.com/app/271590">
-                  <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/271590/library_600x900.jpg" alt="Grand Theft Auto V" width="300" height="450" />
-                </a>
-                <a href="https://store.steampowered.com/app/72850">
-                  <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/72850/library_600x900.jpg" alt="The Elder Scrolls V: Skyrim" width="300" height="450" />
-                </a>
-                <a href="https://store.steampowered.com/app/377160">
-                  <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/377160/library_600x900.jpg" alt="Fallout 4" width="300" height="450" />
-                </a>
-                <a href="https://store.steampowered.com/app/238320">
-                  <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/238320/library_600x900.jpg" alt="Outlast" width="300" height="450" />
-                </a>
-                <a href="https://store.steampowered.com/app/285900">
-                  <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/285900/library_600x900.jpg" alt="Gang Beasts" width="300" height="450" />
-                </a>
-                <a href="https://store.steampowered.com/app/306130">
-                  <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/306130/library_600x900.jpg" alt="The Elder Scrolls Online" width="300" height="450" />
-                </a>
-                <a href="https://store.steampowered.com/app/108600">
-                  <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/108600/library_600x900.jpg" alt="Project Zomboid" width="300" height="450" />
-                </a>
-                <a href="https://store.steampowered.com/app/413150">
-                  <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/413150/library_600x900.jpg" alt="Stardew Valley" width="300" height="450" />
-                </a>
-                <a href="https://store.steampowered.com/app/49520">
-                  <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/49520/library_600x900.jpg" alt="Borderlands 2" width="300" height="450" />
-                </a>
-              </div>
+            <div class="games-blurb">
+              <h3>Games</h3>
+              <a class="game-show" id="game-cover-link" href="https://store.steampowered.com/app/294100">
+                <img id="game-cover" src="https://cdn.cloudflare.steamstatic.com/steam/apps/294100/library_600x900.jpg" alt="RimWorld" width="120" height="180" />
+              </a>
+              <p>
+                I like games with a story, weird mechanics, or a system I can mess
+                with for a long time. Satisfactory and Stardew are the big ones
+                right now. Halo's an old favorite. Wanderstop when I want something
+                slow.
+              </p>
             </div>
             <ul class="pills" id="games">
               <li><a href="https://store.steampowered.com/app/294100">RimWorld · 1874h</a></li>
@@ -580,49 +543,57 @@
         })
         .catch(function () {});
 
-      var show = document.getElementById("game-show");
+      var coverLink = document.getElementById("game-cover-link");
+      var coverImg = document.getElementById("game-cover");
+      var coverGames = [];
       var showTimer = null;
       var showIndex = 0;
 
-      function fillShow(games) {
-        if (!show) return;
-        var withArt = games.filter(function (game) { return game.appid; });
-        if (!withArt.length) return;
-        show.replaceChildren();
-        withArt.forEach(function (game, index) {
-          var link = document.createElement("a");
-          link.href = "https://store.steampowered.com/app/" + game.appid;
-          if (index === 0) link.className = "is-on";
-          var img = document.createElement("img");
-          img.src = "https://cdn.cloudflare.steamstatic.com/steam/apps/" + game.appid + "/library_600x900.jpg";
-          img.alt = game.name;
-          img.width = 300;
-          img.height = 450;
-          link.appendChild(img);
-          show.appendChild(link);
+      function gamesFromPills() {
+        var out = [];
+        document.querySelectorAll("#games a").forEach(function (link) {
+          var match = /\/app\/(\d+)/.exec(link.getAttribute("href") || "");
+          if (!match) return;
+          out.push({
+            appid: match[1],
+            name: link.textContent.replace(/\s·\s\d+h$/, "")
+          });
         });
+        return out;
+      }
+
+      function paintCover() {
+        var game = coverGames[showIndex];
+        if (!game || !coverLink || !coverImg) return;
+        coverLink.href = "https://store.steampowered.com/app/" + game.appid;
+        coverImg.alt = game.name;
+        var src = "https://cdn.cloudflare.steamstatic.com/steam/apps/" + game.appid + "/library_600x900.jpg";
+        if (coverImg.getAttribute("src") !== src) coverImg.src = src;
+      }
+
+      function fillShow(games) {
+        coverGames = games.filter(function (game) { return game.appid; });
         showIndex = 0;
+        paintCover();
         startShow();
       }
 
       function startShow() {
-        if (!show) return;
         if (showTimer) clearInterval(showTimer);
+        if (!coverGames.length) coverGames = gamesFromPills();
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        var slides = show.querySelectorAll("a");
-        if (slides.length < 2) return;
+        if (coverGames.length < 2) return;
         showTimer = setInterval(function () {
-          slides[showIndex].classList.remove("is-on");
-          showIndex = (showIndex + 1) % slides.length;
-          slides[showIndex].classList.add("is-on");
+          showIndex = (showIndex + 1) % coverGames.length;
+          paintCover();
         }, 2800);
       }
 
-      if (show) {
-        show.addEventListener("mouseenter", function () {
+      if (coverLink) {
+        coverLink.addEventListener("mouseenter", function () {
           if (showTimer) clearInterval(showTimer);
         });
-        show.addEventListener("mouseleave", startShow);
+        coverLink.addEventListener("mouseleave", startShow);
       }
       startShow();
     </script>
