@@ -1,4 +1,11 @@
-"""Refresh games.json from Blits_Zen's public Steam library, or from the API."""
+"""Refresh games.json from Blits_Zen's Steam library.
+
+The public games tab still returns a sign-in page to anonymous clients, even
+when game details are public. This script writes games.json only when that XML
+is actually a game list, or when STEAM_API_KEY is set. It leaves an existing
+games.json alone otherwise. Profile HTML only shows a few recent games, which
+is not the most-played list.
+"""
 
 import json
 import os
@@ -21,10 +28,10 @@ def fetch(url):
 
 
 def from_xml(raw):
-    if raw.lstrip().startswith(b"<"):
-        root = ET.fromstring(raw)
-    else:
+    head = raw.lstrip()[:300].lower()
+    if b"<gameslist" not in head and not head.startswith(b"<?xml"):
         return []
+    root = ET.fromstring(raw)
     games = []
     for node in root.iter("game"):
         name = (node.findtext("name") or "").strip()
@@ -71,7 +78,12 @@ def main():
         f"https://steamcommunity.com/id/{VANITY}/games?tab=all&xml=1",
     ):
         try:
-            games = from_xml(fetch(url))
+            raw = fetch(url)
+            if b"<title>sign in</title>" in raw[:4000].lower():
+                print("public list skipped: steam asked for sign-in")
+                games = []
+                continue
+            games = from_xml(raw)
         except Exception as error:
             print(f"public list skipped: {error}")
             games = []

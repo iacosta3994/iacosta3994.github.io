@@ -1,0 +1,66 @@
+{
+  "updated": "2026-10-01T03:53:55Z",
+  "source": "steam",
+  "games": [
+    {
+      "name": "RimWorld",
+      "appid": 294100,
+      "hours": 1874
+    },
+    {
+      "name": "Dishonored 2",
+      "appid": 403640,
+      "hours": 249
+    },
+    {
+      "name": "Cities: Skylines",
+      "appid": 255710,
+      "hours": 182
+    },
+    {
+      "name": "Grand Theft Auto V",
+      "appid": 271590,
+      "hours": 160
+    },
+    {
+      "name": "The Elder Scrolls V: Skyrim",
+      "appid": 72850,
+      "hours": 135
+    },
+    {
+      "name": "Fallout 4",
+      "appid": 377160,
+      "hours": 109
+    },
+    {
+      "name": "Outlast",
+      "appid": 238320,
+      "hours": 104
+    },
+    {
+      "name": "Gang Beasts",
+      "appid": 285900,
+      "hours": 101
+    },
+    {
+      "name": "The Elder Scrolls Online",
+      "appid": 306130,
+      "hours": 86
+    },
+    {
+      "name": "Project Zomboid",
+      "appid": 108600,
+      "hours": 76
+    },
+    {
+      "name": "Stardew Valley",
+      "appid": 413150,
+      "hours": 75
+    },
+    {
+      "name": "Borderlands 2",
+      "appid": 49520,
+      "hours": 69
+    }
+  ]
+}
