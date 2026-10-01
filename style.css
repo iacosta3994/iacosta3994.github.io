@@ -236,6 +236,21 @@ h3 {
   color: var(--accent-ink);
 }
 
+.share {
+  margin: 1rem 0 0;
+  color: var(--faint);
+  font-size: 0.85rem;
+}
+
+.share a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.share a:hover {
+  color: var(--ink);
+}
+
 .now {
   padding-bottom: 1rem;
 }
