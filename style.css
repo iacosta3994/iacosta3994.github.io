@@ -535,6 +535,21 @@ h3 {
   font-size: 0.92rem;
 }
 
+.pills a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.pills a:hover {
+  color: var(--accent);
+}
+
+.games-source {
+  margin: 0.75rem 0 0;
+  color: var(--faint);
+  font-size: 0.85rem;
+}
+
 .about-grid {
   display: grid;
   gap: 2.5rem;

@@ -138,7 +138,7 @@
               right now. Halo's an old favorite. Wanderstop when I want something
               slow.
             </p>
-            <ul class="pills">
+            <ul class="pills" id="games">
               <li>Satisfactory</li>
               <li>Stardew Valley</li>
               <li>RimWorld</li>
@@ -154,6 +154,7 @@
               <li>Wreckfest</li>
               <li>Wanderstop</li>
             </ul>
+            <p class="games-source" id="games-source" hidden>Most played on Steam.</p>
           </article>
           <article class="snippet">
             <h3>Videos</h3>
@@ -261,6 +262,32 @@
       </details>
     </main>
 
+    <script>
+      fetch("games.json")
+        .then(function (response) { return response.ok ? response.json() : null; })
+        .then(function (data) {
+          var games = data && data.games;
+          var list = document.getElementById("games");
+          if (!games || !games.length || !list) return;
+          list.replaceChildren();
+          games.forEach(function (game) {
+            var li = document.createElement("li");
+            var label = game.hours ? game.name + " · " + game.hours + "h" : game.name;
+            if (game.appid) {
+              var link = document.createElement("a");
+              link.href = "https://store.steampowered.com/app/" + game.appid;
+              link.textContent = label;
+              li.appendChild(link);
+            } else {
+              li.textContent = label;
+            }
+            list.appendChild(li);
+          });
+          var note = document.getElementById("games-source");
+          if (note) note.hidden = false;
+        })
+        .catch(function () {});
+    </script>
     <footer class="foot">
       <div class="wrap foot-inner">
         <p>Blizen</p>
