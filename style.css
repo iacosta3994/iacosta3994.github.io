@@ -294,6 +294,46 @@ h3 {
   color: var(--muted);
 }
 
+.vibe-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.snippet {
+  padding: 1.15rem 1.25rem 1.25rem;
+  background: rgba(27, 24, 34, 0.85);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+}
+
+.snippet h3 {
+  margin: 0 0 0.55rem;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.snippet p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.snippet p + p {
+  margin-top: 0.7rem;
+}
+
+.snippet .pills {
+  margin-top: 0.9rem;
+}
+
+.snippet em {
+  color: var(--ink);
+  font-style: normal;
+}
+
 .timeline {
   margin: 0;
   padding: 0;
@@ -540,7 +580,8 @@ section[id] {
 
 @media (min-width: 720px) {
   .cards,
-  .skill-grid {
+  .skill-grid,
+  .vibe-grid {
     grid-template-columns: 1fr 1fr;
   }
 
