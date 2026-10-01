@@ -28,8 +28,8 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(900px 480px at 100% -10%, rgba(140, 90, 190, 0.28), transparent 60%),
-    radial-gradient(700px 420px at -10% 30%, rgba(113, 189, 230, 0.08), transparent 55%),
+    radial-gradient(820px 520px at 100% -8%, rgba(62, 210, 214, 0.22), transparent 58%),
+    radial-gradient(760px 480px at -12% 18%, rgba(150, 90, 210, 0.34), transparent 60%),
     var(--bg);
   color: var(--ink);
   font-family: var(--sans);
@@ -134,8 +134,8 @@ a:hover {
 .portraits {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.7rem;
-  width: min(26rem, 100%);
+  gap: 0.85rem;
+  width: min(34rem, 100%);
 }
 
 .portrait,
@@ -151,10 +151,14 @@ a:hover {
 
 .portrait {
   object-position: center 22%;
+  transform: rotate(-2deg);
+  border-color: rgba(94, 220, 214, 0.55);
 }
 
 .badge {
   object-position: center center;
+  transform: rotate(2deg);
+  border-color: rgba(210, 180, 255, 0.6);
 }
 
 .eyebrow {
@@ -232,8 +236,8 @@ h3 {
 
 .linkstack a:hover {
   border-color: transparent;
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: #7ad7df;
+  color: #102022;
 }
 
 .share {
