@@ -190,112 +190,6 @@ a:hover {
   border-color: rgba(180, 190, 254, 0.3);
 }
 
-/* the orb: three soft layers, a white core, eyes. It breathes. */
-
-.orb {
-  position: relative;
-  width: 92px;
-  height: 92px;
-  margin-top: 2rem;
-  animation: orb-breathe 4.2s ease-in-out infinite;
-}
-
-.orb i {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  mix-blend-mode: screen;
-}
-
-.orb .l1 {
-  background: radial-gradient(circle at 38% 34%, #cba6f7 0%, transparent 70%);
-  animation: orb-drift-a 7.3s ease-in-out infinite alternate;
-}
-
-.orb .l2 {
-  background: radial-gradient(circle at 64% 40%, #89b4fa 0%, transparent 70%);
-  animation: orb-drift-b 9.1s ease-in-out infinite alternate;
-}
-
-.orb .l3 {
-  background: radial-gradient(circle at 50% 66%, #f5c2e7 0%, transparent 70%);
-  animation: orb-drift-c 11.7s ease-in-out infinite alternate;
-}
-
-.orb .core {
-  position: absolute;
-  left: 40%;
-  top: 35%;
-  width: 26%;
-  height: 26%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 70%);
-}
-
-.orb .eye {
-  position: absolute;
-  top: 46%;
-  width: 7px;
-  height: 10px;
-  border-radius: 50%;
-  background: #1e1e2e;
-}
-
-.orb .eye::after {
-  content: "";
-  position: absolute;
-  left: 1.5px;
-  top: 1.5px;
-  width: 2.5px;
-  height: 2.5px;
-  border-radius: 50%;
-  background: #fff;
-}
-
-.orb .eye.left {
-  left: 36%;
-}
-
-.orb .eye.right {
-  right: 36%;
-}
-
-@keyframes orb-breathe {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.045);
-  }
-}
-
-@keyframes orb-drift-a {
-  from {
-    transform: translate(-3px, -2px);
-  }
-  to {
-    transform: translate(3px, 2px);
-  }
-}
-
-@keyframes orb-drift-b {
-  from {
-    transform: translate(3px, -3px);
-  }
-  to {
-    transform: translate(-2px, 3px);
-  }
-}
-
-@keyframes orb-drift-c {
-  from {
-    transform: translate(0, 3px);
-  }
-  to {
-    transform: translate(0, -3px);
-  }
-}
 
 .eyebrow {
   margin: 0;
@@ -712,11 +606,6 @@ section[id] {
     scroll-behavior: auto;
   }
 
-  .orb,
-  .orb i {
-    animation: none;
-  }
-
   .linkstack a {
     transition: none;
   }
@@ -732,7 +621,6 @@ section[id] {
   .top,
   .skip,
   .linkstack,
-  .orb,
   .foot {
     display: none;
   }
